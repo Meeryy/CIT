@@ -1,20 +1,21 @@
-// Sample blog posts data
-const posts = [
-    {
-        title: "First Blog Post",
-        content: "This is the content of the first blog post.",
-        date: "January 1, 2023"
-    },
-    {
-        title: "Second Blog Post",
-        content: "This is the content of the second blog post.",
-        date: "February 1, 2023"
+// Function to fetch blog posts from the API
+async function fetchPosts() {
+    try {
+        const response = await fetch('/api/posts'); // Fetch posts from the API
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const posts = await response.json(); // Parse the JSON response
+        displayPosts(posts); // Call the function to display posts
+    } catch (error) {
+        console.error('Error fetching posts:', error);
     }
-];
+}
 
 // Function to display blog posts
-function displayPosts() {
+function displayPosts(posts) {
     const postList = document.getElementById('post-list');
+    postList.innerHTML = ''; // Clear existing posts
     posts.forEach(post => {
         const postItem = document.createElement('div');
         postItem.classList.add('post-item');
@@ -27,5 +28,5 @@ function displayPosts() {
     });
 }
 
-// Call the function to display posts on page load
-window.onload = displayPosts;
+// Call the fetchPosts function on page load
+window.onload = fetchPosts;
