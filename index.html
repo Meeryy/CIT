@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Blog z MongoDB</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
 </head>
 <body>
-  <h1>Blogové příspěvky</h1>
-  <ul id="posts"></ul>
+    <header>
+        <h1>Welcome to My Blog</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <script>
-    fetch('http://<EC2_PUBLIC_IP>:3000/posts')
-      .then(res => res.json())
-      .then(data => {
-        const list = document.getElementById('posts');
-        data.forEach(post => {
-          const li = document.createElement('li');
-          li.textContent = post.title || JSON.stringify(post);
-          list.appendChild(li);
-        });
-      });
-  </script>
+    <main>
+        <section id="posts">
+            <h2>Blog Posts</h2>
+            <div id="post-list">
+                <!-- Blog posts will be dynamically inserted here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 My Blog. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
 </body>
 </html>
